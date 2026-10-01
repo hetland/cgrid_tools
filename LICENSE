@@ -1,0 +1,145 @@
+MIT License
+
+Copyright (c) 2026 cgrid_tools contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+THIRD-PARTY NOTICES
+===================
+
+The MIT license above covers the contributions to cgrid-tools. Material
+adapted from the projects below remains subject to its original notices
+and conditions. Retain this complete file when redistributing the package.
+The LicenseRef identifiers in package metadata refer to the corresponding
+sections below; they do not replace the upstream terms.
+
+1. gridgen-c (LicenseRef-Gridgen)
+--------------------------------
+
+The CRDT solver and bundled gridgen-c reference fixtures draw on Pavel
+Sakov's gridgen-c. The following is its complete upstream LICENSE.
+Its concluding Triangle note describes the upstream gridgen-c distribution:
+cgrid-tools does not include or link Triangle, and uses SciPy/Qhull for
+triangulation. No permission to redistribute Triangle is granted here.
+
+Copyright (C) 2000-2009 Pavel Sakov and CSIRO
+
+Redistribution and use of material from the package `gridgen', with or without
+modification, are permitted provided that the following conditions are 
+met:
+
+   1. Redistributions of material must retain the above copyright notice, this
+      list of conditions and the following disclaimer.
+   2. The names of the authors may not be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHORS ``AS IS'' AND ANY EXPRESS OR IMPLIED 
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+EVENT SHALL THE AUTHORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+
+Note: this software makes use of the Triangle software, which is non-free for
+commercial use. See the triangle.c and triangle.h files for details.
+
+2. octant (BSD-3-Clause)
+-----------------------
+
+The C-grid metric API and formulas draw on octant, authored by Robert
+Hetland and contributors. The text below is the complete upstream
+LICENSE.txt (which supplies no separate copyright line).
+
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the
+   distribution.
+3. The name of the author may not be used to endorse or promote
+   products derived from this software without specific prior written
+   permission.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+
+3. pygridgen (MIT)
+------------------
+
+Focus transforms and the boundary API draw on pygridgen. Its source header
+states "(c) Rob Hetland, 2012" and "Released under an MIT license."
+The MIT terms are reproduced here for that material.
+
+MIT License
+
+Copyright (c) Rob Hetland, 2012
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+4. SCPACK (LicenseRef-SCPACK)
+----------------------------
+
+Schwarz-Christoffel routines in gridgen-c acknowledge SCPACK by Lloyd
+Nicholas Trefethen. We retain its permission and citation notice for the
+related numerical routines in cgrid-tools. SCPACK version 2 (July 1983),
+as distributed at https://www.netlib.org/conformal/scpdbl, states:
+
+"the package may be freely copied and used, but reference to
+ the above paper should be given in any publications arising
+ from its use."
+
+The referenced paper is:
+L. N. Trefethen, "Numerical computation of the Schwarz-Christoffel
+transformation", SIAM Journal on Scientific and Statistical Computing
+1 (1980), 82-102.

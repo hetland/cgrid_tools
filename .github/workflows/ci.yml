@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dev deps
+        run: pip install -e ".[dev]" -q
+      - name: Ruff lint
+        run: ruff check .
+      - name: Black format check
+        run: black --check src tests examples docs/conf.py
+      - name: isort check
+        run: isort --check-only src tests examples docs/conf.py
+
+  test:
+    name: Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+        extras: ["test", "test,geo"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
+          restore-keys: ${{ runner.os }}-pip-
+      - name: Install
+        run: pip install -e ".[${{ matrix.extras }}]" -q
+      - name: pytest
+        run: pytest -q
+
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install docs deps
+        run: pip install -e ".[docs,geo]" -q
+      - name: Build docs
+        run: sphinx-build -W --keep-going -b html docs docs/_build/html
+
+  distribution:
+    name: Distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install build twine
+      - run: python -m build && twine check dist/*
+      - name: Test the source distribution outside the checkout
+        run: |
+          mkdir /tmp/cgrid-sdist
+          tar -xzf dist/*.tar.gz -C /tmp/cgrid-sdist --strip-components=1
+          cd /tmp/cgrid-sdist
+          pip install ".[test]"
+          python -m pytest -q

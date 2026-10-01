@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cgrid-tools"
+version = "0.2.0"
+description = "Curvilinear C-grid generation and processing tools, derived from gridgen-c, octant, and pygridgen."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND BSD-3-Clause AND LicenseRef-Gridgen AND LicenseRef-SCPACK"
+license-files = ["LICENSE"]
+authors = [{name = "cgrid_tools contributors"}]
+dependencies = [
+  "numba>=0.59",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "xarray>=2024.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/hetland/cgrid-tools"
+Documentation = "https://cgrid-tools.readthedocs.io"
+Issues = "https://github.com/hetland/cgrid-tools/issues"
+
+[project.optional-dependencies]
+geo = ["pyproj>=3.6"]
+test = ["pytest>=8.0"]
+dev = [
+  "pytest>=8.0",
+  "build>=1.2",
+  "twine>=5",
+  "black>=24.0",
+  "isort>=5.13",
+  "ruff>=0.4",
+]
+
+docs = ["sphinx>=7", "furo", "myst-parser", "myst-nb", "sphinx-autodoc-typehints", "matplotlib>=3.8"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "performance: opt-in timing checks for larger solver workloads",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311"]
+include = "\\.pyi?$"
+
+[tool.isort]
+profile = "black"
+line_length = 100
+known_first_party = ["cgrid_tools"]
+src_paths = ["src", "tests", "examples"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "examples"]
+
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle errors
+  "F",    # pyflakes
+  "I",    # isort
+  "UP",   # pyupgrade
+  "B",    # bugbear
+  "SIM",  # simplify
+]
+ignore = [
+  "E501",  # line-too-long handled by black
+  "B008",  # default arg in function def (common with np.array / dataclass)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]  # allow plain asserts in tests
+"examples/*" = ["B011"]
+"src/cgrid_tools/gridgen/crdt.py" = ["B007", "F841"]   # pre-existing loop/var patterns in solver
+"src/cgrid_tools/gridgen/geometry.py" = ["B905"]        # zip without strict in legacy geometry helpers
+"src/cgrid_tools/gridgen/triangulation.py" = ["B905", "SIM110"]  # legacy triangulation code
+"src/cgrid_tools/metrics.py" = ["B905"]                 # legacy metrics code
