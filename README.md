@@ -4,6 +4,8 @@ Generate two-dimensional curvilinear C-grids from polygon boundaries for ocean
 models such as REMORA and ROMS. The package provides coordinates, land-water
 masks, grid metrics, and NetCDF serialization.
 
+***NOTE: THIS PACKAGE IS STILL UNDER DEVELOPMENT AND HAS NOT BEEN THOUROUGHLY TESTED***
+
 ## Install
 
 Python 3.10 or later is required. Install from this checkout:
